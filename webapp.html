@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<title>Tonnel WebApp AuthData</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+<h2>Telegram WebApp AuthData</h2>
+<pre id="authdata"></pre>
+
+<script>
+  const tg = window.Telegram.WebApp;
+  document.getElementById("authdata").textContent = tg.initData;
+
+  // Отправим authData обратно в бота (Telegram API)
+  tg.sendData(tg.initData);
+</script>
+</body>
+</html>
