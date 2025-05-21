@@ -7,16 +7,16 @@
 </head>
 <body>
     <h1>Telegram WebApp</h1>
-    <p>Нажми кнопку, чтобы отправить authData боту</p>
-    <button id="sendAuthDataBtn">Отправить данные</button>
+    <p>Нажми кнопку, чтобы отправить токен боту</p>
+    <button id="sendRequestBtn">Отправить токен боту</button>
 
     <script>
         const tg = window.Telegram.WebApp;
-        tg.ready(); // Сообщаем Telegram, что WebApp загрузился
+        tg.ready();
 
-        document.getElementById('sendAuthDataBtn').onclick = () => {
-            const authData = tg.initData;
-            tg.sendData(authData);
+        document.getElementById('sendRequestBtn').onclick = () => {
+            // Отправляем initData (authData) в бота
+            tg.sendData(tg.initData);
         };
     </script>
 </body>
