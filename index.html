@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8" />
-<title>Tonnel WebApp AuthData</title>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <meta charset="UTF-8">
+  <title>Tonnel WebApp Auth</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-<h2>Telegram WebApp AuthData</h2>
-<pre id="authdata"></pre>
+  <h2>Telegram WebApp Auth</h2>
+  <pre id="status">Получаю authData...</pre>
 
-<script>
-  const tg = window.Telegram.WebApp;
-  document.getElementById("authdata").textContent = tg.initData;
+  <script>
+    const tg = window.Telegram.WebApp;
+    const statusEl = document.getElementById("status");
 
-  // Отправим authData обратно в бота (Telegram API)
-  tg.sendData(tg.initData);
-</script>
+    const authData = tg.initData;
+    if (!authData) {
+      statusEl.textContent = "❌ Не удалось получить initData.";
+    } else {
+      statusEl.textContent = "✅ authData получен. Отправляю боту...";
+      tg.sendData(authData);
+    }
+  </script>
 </body>
 </html>
