@@ -1,39 +1,23 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Tonnel WebApp Auth</title>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <style>
-    body {
-      font-family: sans-serif;
-      padding: 20px;
-    }
-    #status {
-      margin-top: 20px;
-      font-weight: bold;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <title>Telegram WebApp AuthData</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-  <h2>Telegram WebApp Auth</h2>
-  <div id="status">⏳ Ожидаю готовности WebApp...</div>
+    <h1>Telegram WebApp</h1>
+    <p>Нажми кнопку, чтобы отправить authData боту</p>
+    <button id="sendAuthDataBtn">Отправить данные</button>
 
-  <script>
-    const tg = window.Telegram.WebApp;
-    const statusEl = document.getElementById("status");
+    <script>
+        const tg = window.Telegram.WebApp;
 
-    tg.ready(); // обязательно вызвать
-
-    tg.onEvent('ready', () => {
-      const authData = tg.initData;
-      if (!authData) {
-        statusEl.textContent = "❌ Не удалось получить initData.";
-      } else {
-        statusEl.textContent = "✅ authData получен. Отправляю боту...";
-        tg.sendData(authData);
-      }
-    });
-  </script>
+        document.getElementById('sendAuthDataBtn').onclick = () => {
+            const authData = tg.initData; // Это и есть authData (initData)
+            // Отправляем authData обратно в чат боту как сообщение
+            tg.sendData(authData);
+        };
+    </script>
 </body>
 </html>
