@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8" />
-    <title>Telegram WebApp AuthData</title>
+    <title>Telegram WebApp Auth</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
@@ -12,10 +12,10 @@
 
     <script>
         const tg = window.Telegram.WebApp;
+        tg.ready(); // Сообщаем Telegram, что WebApp загрузился
 
         document.getElementById('sendAuthDataBtn').onclick = () => {
-            const authData = tg.initData; // Это и есть authData (initData)
-            // Отправляем authData обратно в чат боту как сообщение
+            const authData = tg.initData;
             tg.sendData(authData);
         };
     </script>
